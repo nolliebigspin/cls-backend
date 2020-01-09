@@ -26,9 +26,19 @@ let db = new sqlite3.Database(dbSource, (err) => {
                 db.run(insert, ["admin","admin@example.com",md5("admin123456")])
                 db.run(insert, ["user","user@example.com",md5("user123456")])
             }
-        });  
+        }); 
+        db.run(`CREATE TABLE groupIDs (
+            lastID INTEGER PRIMARY KEY
+            )`,
+        (err) => {
+            if (err) {
+                // table already created
+            } else {
+                var insert = 'INSERT INTO groupIDs (lastID) VALUES (?)'
+                db.run(insert, [1])
+            }
+        });
     }
 });
-
 module.exports = db
 
