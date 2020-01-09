@@ -26,7 +26,8 @@ let db = new sqlite3.Database(dbSource, (err) => {
                 db.run(insert, ["admin","admin@example.com",md5("admin123456")])
                 db.run(insert, ["user","user@example.com",md5("user123456")])
             }
-        }); 
+        }),
+
         db.run(`CREATE TABLE groupIDs (
             lastID INTEGER PRIMARY KEY
             )`,
@@ -34,11 +35,29 @@ let db = new sqlite3.Database(dbSource, (err) => {
             if (err) {
                 // table already created
             } else {
-                var insert = 'INSERT INTO groupIDs (lastID) VALUES (?)'
-                db.run(insert, [1])
+                var idInsert = 'INSERT INTO groupIDs (lastID) VALUES (?)'
+                db.run(idInsert, 1)
             }
-        });
+        }),
+
+        db.run(`CREATE TABLE items (
+            itemID REAL PRIMARY KEY,
+            difficulty REAL,
+            question TEXT,
+            target TEXT,
+            groupID TEXT,
+            symbol NUMERIC
+            )`,
+        (err) => {
+            if (err) {
+                //test
+            } else {
+                var itemInsert = "INSERT INTO items (itemID, difficulty, question, target, groupID, symbol) VALUES (?,?,?,?,?,?)"
+                db.run(itemInsert, [1.1, -2.474, "OK/bestätigen", "OK_Bestätigen", "g1", true])
+            }
+        })
     }
 });
+
 module.exports = db
 
