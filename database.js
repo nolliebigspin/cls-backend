@@ -3,6 +3,7 @@ var md5 = require('md5')
 
 const dbSource = "db.sqlite"
 
+// Creates a new SQLite database
 let db = new sqlite3.Database(dbSource, (err) => {
     if (err) {
       // Cannot open database
@@ -33,7 +34,7 @@ let db = new sqlite3.Database(dbSource, (err) => {
             )`,
         (err) => {
             if (err) {
-                // table already created
+                // Table already created
             } else {
                 var idInsert = 'INSERT INTO groupIDs (lastID) VALUES (?)'
                 db.run(idInsert, 1)
@@ -50,7 +51,7 @@ let db = new sqlite3.Database(dbSource, (err) => {
             )`,
         (err) => {
             if (err) {
-                //test
+                // Table already created
             } else {
                 var itemInsert = "INSERT INTO items (itemID, difficulty, question, target, groupID, symbol) VALUES (?,?,?,?,?,?)"
                 db.run(itemInsert, [1.1, -2.474, "OK/bestätigen", "OK_Bestätigen", "g1", true])
@@ -70,7 +71,7 @@ let db = new sqlite3.Database(dbSource, (err) => {
             )`,
         (err) => {
             if (err) {
-                //test
+                // Table already created
             } else {
                 var groudLinksInsert = "INSERT INTO groupLinks (groupID, target0, target1, target2, target3, target4, target5, target6, target7) VALUES (?,?,?,?,?,?,?,?,?)"
                 db.run(groudLinksInsert, ["g1", "OK_Bestätigen", "Rückgängig", "Hilfe", "Abbruch_Symbol", "Anhang", "Speichern_Symbol", "Löschen", "Datei"])
@@ -99,7 +100,7 @@ let db = new sqlite3.Database(dbSource, (err) => {
             )`,
         (err) => {
             if (err) {
-                //test
+                // Table already created
             } else {
                 var userTemplateInsert = "INSERT INTO userTemplate (groupID) VALUES (?)"
                 db.run(userTemplateInsert, [0])
@@ -129,7 +130,7 @@ let db = new sqlite3.Database(dbSource, (err) => {
             )`,
         (err) => {
             if (err) {
-                //test
+                // Table already created
             } else {
                 var userDataInsert = "INSERT INTO userData (firstUsed, useTime, gender, age, final_Difficulty, time, groupID, textediting, spreadsheets, presentation, pictureediting, coding, gaming, email, internetsurfing, informationgathering, onlineshopping, onlinebanking) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
                 db.run(userDataInsert, [4, 70, "male", 20, 2.4, 10.5, 0, 2, 3, 4, 0, 1, 2, 3, 4, 0, 1, 2])

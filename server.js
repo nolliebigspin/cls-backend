@@ -16,7 +16,7 @@ app.get("/", (req, res, next) => {
     res.json({"message":"Ok"})
 });
 
-// Get a list of all users
+// GET a list of all users
 app.get("/api/users", (req, res, next) => {
     var sql = "select * from user"
     var params = []
@@ -32,6 +32,7 @@ app.get("/api/users", (req, res, next) => {
     });
 });
 
+// GET all groupIDs
 app.get("/api/groupids", (req, res, next) => {
     var sql = "select * from groupIDs"
     var params = []
@@ -46,6 +47,7 @@ app.get("/api/groupids", (req, res, next) => {
     });
 });
 
+// GET all items
 app.get("/api/items", (req, res, next) => {
     var sql = "select * from items"
     var params = []
@@ -60,6 +62,7 @@ app.get("/api/items", (req, res, next) => {
     });
 });
 
+// GET all groupLinks
 app.get("/api/groupLinks", (req, res, next) => {
     var sql = "select * from groupLinks"
     var params = []
@@ -74,6 +77,7 @@ app.get("/api/groupLinks", (req, res, next) => {
     });
 });
 
+// GET the userTemplate
 app.get("/api/userTemplate", (req, res, next) => {
     var sql = "select * from userTemplate"
     var params = []
@@ -88,6 +92,7 @@ app.get("/api/userTemplate", (req, res, next) => {
     });
 });
 
+// GET the userData
 app.get("/api/userData", (req, res, next) => {
     var sql = "select * from userData"
     var params = []
