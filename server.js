@@ -140,7 +140,40 @@ app.patch("/api/groupids/patch", (req, res, next) => {
         `UPDATE groupIDs set 
            lastID = COALESCE(?,lastID)`,
         [data.lastID],
-        function (err, result) {
+        (err, result) => {
+            if (err){
+                res.status(400).json({"error": res.message})
+                return;
+            }
+            res.json({
+                message: "success",
+                data: data,
+                changes: this.changes
+            })
+    });
+})
+
+// PATCH items
+app.patch("/api/items/patch/:itemID", (req, res, next) => {
+    var data = {
+            itemID: req.body.itemID,
+            difficulty: req.body.difficulty,
+            question: req.body.question,
+            target: req.body.target,
+            groupID: req.body.groupID,
+            symbol: req.body.symbol 
+    }
+    db.run(
+        `UPDATE items set
+           itemID = COALESCE(?,itemID)
+           difficulty = COALESCE(?,difficulty)
+           question = COALESCE(?,question)
+           target = COALESCE(?,target)
+           groupID = COALESCE(?,groupID)
+           symbol = COALESCE(?,symbol)
+           WHERE itemID = ?`,
+        [data.itemID, data.difficulty, data.question, data.target, data.groupID, data.symbol, req.params.id],
+        (err, result) => {
             if (err){
                 res.status(400).json({"error": res.message})
                 return;

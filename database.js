@@ -38,6 +38,8 @@ let db = new sqlite3.Database(dbSource, (err) => {
             } else {
                 var itemInsert = "INSERT INTO items (itemID, difficulty, question, target, groupID, symbol) VALUES (?,?,?,?,?,?)"
                 db.run(itemInsert, [1.1, -2.474, "OK/bestätigen", "OK_Bestätigen", "g1", true])
+                db.run(itemInsert, [1.2, 2.474, "OK", "OK", "g1", false])
+                db.run(itemInsert, [1.3, 1.45, "bestätigen", "Bestätigen", "g1", true])
             }
         }),
 
