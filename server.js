@@ -21,22 +21,6 @@ app.get("/", (req, res, next) => {
     res.json({"message":"Ok"})
 });
 
-// GET a list of all users
-app.get("/api/users", (req, res, next) => {
-    var sql = "select * from user"
-    var params = []
-    db.all(sql, params, (err, rows) => {
-        if (err) {
-          res.status(400).json({"error":err.message});
-          return;
-        }
-        res.json({
-            "message":"success",
-            "data":rows
-        })
-    });
-});
-
 // GET all groupIDs
 app.get("/api/groupids", (req, res, next) => {
     var sql = "select * from groupIDs"
@@ -112,6 +96,7 @@ app.get("/api/userData", (req, res, next) => {
     });
 });
 
+// POST new cls-userData
 app.post("/api/userData", (req, res, next) => {
     var data = {
         firstUsed: req.body.firstUsed,
@@ -135,7 +120,7 @@ app.post("/api/userData", (req, res, next) => {
     }
     var sql = "INSERT INTO userData (firstUsed, useTime, gender, age, final_Difficulty, time, groupID, textediting, spreadsheets, presentation, pictureediting, coding, gaming, email, internetsurfing, informationgathering, onlineshopping, onlinebanking) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
     var params = [data.firstUsed, data.useTime, data.gender, data.age, data.final_Difficulty, data.time, data.groupID, data.textediting, data.spreadsheets, data.presentation, data.pictureediting, data.coding, data.gaming, data.email, data.internetsurfing, data.informationgathering, data.onlineshopping, data.onlinebanking]
-    db.run(sql, params, function(err, result) {
+    db.run(sql, params, (err, result) => {
         if(err) {
             res.status(400).json({"error": err.message})
             return;
@@ -143,6 +128,28 @@ app.post("/api/userData", (req, res, next) => {
         res.json({
             "data": data
         })
+    });
+});
+
+// PATCH groupTD
+app.patch("/api/groupids/patch", (req, res, next) => {
+    var data = {
+        lastID: req.body.lastID
+    }
+    db.run(
+        `UPDATE groupIDs set 
+           lastID = COALESCE(?,lastID)`,
+        [data.lastID],
+        function (err, result) {
+            if (err){
+                res.status(400).json({"error": res.message})
+                return;
+            }
+            res.json({
+                message: "success",
+                data: data,
+                changes: this.changes
+            })
     });
 })
 
