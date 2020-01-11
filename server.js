@@ -2,6 +2,11 @@
 var express = require("express")
 var app = express()
 var db = require("./database.js")
+var bodyParser = require("body-parser");
+
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 // Server port
 var http_port = 8000
@@ -109,14 +114,13 @@ app.get("/api/userData", (req, res, next) => {
 
 app.post("/api/userData", (req, res, next) => {
     var data = {
-        id: req.body.id,
         firstUsed: req.body.firstUsed,
         useTime: req.body.useTime,
         gender: req.body.gender,
         age: req.body.age,
         final_Difficulty: req.body.final_Difficulty,
         time: req.body.time,
-        groupID: req.body.gropID,
+        groupID: req.body.groupID,
         textediting: req.body.textediting,
         spreadsheets: req.body.spreadsheets,
         presentation: req.body.presentation,
@@ -130,18 +134,17 @@ app.post("/api/userData", (req, res, next) => {
         onlinebanking: req.body.onlineshopping 
     }
     var sql = "INSERT INTO userData (firstUsed, useTime, gender, age, final_Difficulty, time, groupID, textediting, spreadsheets, presentation, pictureediting, coding, gaming, email, internetsurfing, informationgathering, onlineshopping, onlinebanking) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
-    var params = [data.id, data.firstUsed, data.useTime, data.gender, data.age, data.final_Difficulty, data.time, data.groupID, data.textediting, data.spreadsheets, data.presentation, data.pictureediting, data.coding, data.gaming, data.email, data.internetsurfing, data.informationgathering, data.onlineshopping, data.onlinebanking]
+    var params = [data.firstUsed, data.useTime, data.gender, data.age, data.final_Difficulty, data.time, data.groupID, data.textediting, data.spreadsheets, data.presentation, data.pictureediting, data.coding, data.gaming, data.email, data.internetsurfing, data.informationgathering, data.onlineshopping, data.onlinebanking]
     db.run(sql, params, function(err, result) {
         if(err) {
             res.status(400).json({"error": err.message})
             return;
         }
         res.json({
-            "data": data,
-            "id": this.lastID
+            "data": data
         })
     });
-});
+})
 
 // Default response for any other request
 app.use(function(req, res) {
