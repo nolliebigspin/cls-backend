@@ -131,7 +131,7 @@ app.post("/api/userData", (req, res, next) => {
     });
 });
 
-// PATCH groupTD
+// PATCH groupID
 app.patch("/api/groupids/patch", (req, res, next) => {
     var data = {
         lastID: req.body.lastID
@@ -153,6 +153,29 @@ app.patch("/api/groupids/patch", (req, res, next) => {
     });
 })
 
+// POST item
+app.post("/api/items", (req, res, next) => {
+    var data = {
+        itemID: req.body.itemID,
+        difficulty: req.body.difficulty,
+        question: req.body.question,
+        target: req.body.target,
+        groupID: req.body.groupID,
+        symbol: req.body.symbol 
+    }
+    var sql = "INSERT INTO items (itemID, difficulty, question, target, groupID, symbol) VALUES (?,?,?,?,?,?)"    
+    var params = [data.itemID, data.difficulty, data.question, data.target, data.groupID, data.symbol]
+    db.run(sql, params, (err, result) => {
+        if(err) {
+            res.status(400).json({"error": err.message})
+            return;
+        }
+        res.json({
+            "data": data
+        })
+    });
+})
+
 // PATCH items
 app.patch("/api/items/patch/:itemID", (req, res, next) => {
     var data = {
@@ -165,14 +188,14 @@ app.patch("/api/items/patch/:itemID", (req, res, next) => {
     }
     db.run(
         `UPDATE items set
-           itemID = COALESCE(?,itemID)
-           difficulty = COALESCE(?,difficulty)
-           question = COALESCE(?,question)
-           target = COALESCE(?,target)
-           groupID = COALESCE(?,groupID)
+           itemID = COALESCE(?,itemID),
+           difficulty = COALESCE(?,difficulty),
+           question = COALESCE(?,question),
+           target = COALESCE(?,target),
+           groupID = COALESCE(?,groupID),
            symbol = COALESCE(?,symbol)
            WHERE itemID = ?`,
-        [data.itemID, data.difficulty, data.question, data.target, data.groupID, data.symbol, req.params.id],
+        [data.itemID, data.difficulty, data.question, data.target, data.groupID, data.symbol, req.params.itemID],
         (err, result) => {
             if (err){
                 res.status(400).json({"error": res.message})
