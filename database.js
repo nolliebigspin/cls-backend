@@ -18,7 +18,7 @@ let db = new sqlite3.Database(dbSource, (err) => {
             if (err) {
                 // Table already created
             } else {
-                var idInsert = 'INSERT INTO groupIDs (lastID, id) VALUES (?)'
+                var idInsert = 'INSERT INTO groupIDs (lastID) VALUES (?)'
                 db.run(idInsert, 1)
             }
         }),
