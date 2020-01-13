@@ -50,7 +50,7 @@ app.get("/api/items", (req, res, next) => {
             return;
         }
         res.json({
-            "data":rows[0]
+            "data":rows
         })
     });
 });
