@@ -10,11 +10,19 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.get('/products/:id', function (req, res, next) {
-    res.json({msg: 'This is CORS-enabled for all origins!'})
+    res.json({msg: 'enables CORS for GET'})
+})
+
+app.post('/products/:id', function (req, res, next) {
+    res.json({msg: 'enables CORS for POST'})
+})
+
+app.patch('/products/:id', function (req, res, next) {
+    res.json({msg: 'enables CORS for PATCH'})
 })
   
-  app.listen(4000, function () {
-    console.log('CORS-enabled web server listening on port 4000')
+app.listen(8000, function () {
+    console.log('CORS-enabled web server listening on port 8000')
 })
 
 // GET all groupIDs
@@ -27,7 +35,7 @@ app.get("/api/groupids", (req, res, next) => {
             return;
         }
         res.json({
-            "data":rows[0]
+            "value":rows[0]
         })
     });
 });
@@ -57,7 +65,7 @@ app.get("/api/groupLinks", (req, res, next) => {
             return;
         }
         res.json({
-            "data":rows[0]
+            "groups":rows
         })
     });
 });
@@ -79,7 +87,7 @@ app.get("/api/userTemplate", (req, res, next) => {
 
 // GET the userData
 app.get("/api/userData", (req, res, next) => {
-    var sql = "select * from userData"
+    var sql = "select * from userData"        
     var params = []
     db.all(sql, params, (err, rows) => {
         if (err) {
@@ -87,7 +95,22 @@ app.get("/api/userData", (req, res, next) => {
             return;
         }
         res.json({
-            "data":rows[0]
+            "users":rows
+        })
+    });
+});
+
+// GET the userData final difficulty
+app.get("/api/userData/final_Difficulty", (req, res, next) => {
+    var sql = "select final_Difficulty from userData"        
+    var params = []
+    db.all(sql, params, (err, rows) => {
+        if (err) {
+            res.status(400).json({"error":err.message});
+            return;
+        }
+        res.json({
+            "users":rows
         })
     });
 });
