@@ -60,6 +60,21 @@ let db = new sqlite3.Database(dbSource, (err) => {
             } else {
                 var groudLinksInsert = "INSERT INTO groupLinks (groupID, target0, target1, target2, target3, target4, target5, target6, target7) VALUES (?,?,?,?,?,?,?,?,?)"
                 db.run(groudLinksInsert, ["g1", "OK_Bestätigen", "Rückgängig", "Hilfe", "Abbruch_Symbol", "Anhang", "Speichern_Symbol", "Löschen", "Datei"])
+                db.run(groudLinksInsert, ["g2", "Ein_Ausschalter", "Abspielen_Start", "Auswerfen_Eject", "Vorspulen", "Zurückspringen", "Ton_aus_Stumm", "Pause", "Stop"])
+                db.run(groudLinksInsert, ["g3", "Umschalten_Großbuchstaben", "Enter_Eingabe", "Abbruch_Taste", "Tabulator", "Backspace_Löschen", "Entfernen", "F1", "Steuerung"])
+                db.run(groudLinksInsert, ["g4", "USB", "FireWire", "Kensington-Lock", "Bluetooth", "Ethernet", "RFID", "DrahtlosesNetzwerk_Wireless", "News-Feed"])
+                db.run(groudLinksInsert, ["g5", "Datei", "Cancel", "Tooltip", "Browser", "Hyperlink", "Icon"])
+                db.run(groudLinksInsert, ["g6", "Scrollen", "Linke Maustaste Doppelklicken", "Linke Maustaste einmal klicken", "Server", "Ordner/Verzeichnis", "Drag & Drop"])
+                db.run(groudLinksInsert, ["g7", "Slider", "Ordner", "Abbrechen", "Crop", "Favoriten", "Hyperlink", "NichtVerfügbar_Stop", "Distraktor_kopieren"])
+                db.run(groudLinksInsert, ["g8", "Cursor_Mauszeiger_allgemein", "Masuszeiger_überHyperlink", "Hintergrundaktivität_bitteWarten", "Objekt_vergrößern", "Objekt_verschieben", "Nächste_Weiter", "Ok_Button", "Texteingabe"])
+                db.run(groudLinksInsert, ["g9", "IP-Adresse", "Captcha", "CPU", "Shell", "Stream", "Http-Cookie"])
+                db.run(groudLinksInsert, ["g10", "Alles_markieren", "Kopieren", "Datei_öffnen", "Drucken", "Speichern_Tastenkürzel", "Einfügen", "Ausschneiden", "Widerrufen_Rückgängig_machen"])
+                db.run(groudLinksInsert, ["g11", "möglicherweise_Input", "Selbstauslöser", "DreieckMitKreis", "Input_Symbol", "Start_Symbol", "Toolbar", "Symbol_Drucken"])
+                db.run(groudLinksInsert, ["g12", "Taskleiste", "Dialogfeld", "ASCII", "Widget", "Thumbnail", "Cache"])
+                db.run(groudLinksInsert, ["g13", "Partitionierung", "Indexierung", "Extrahieren", "Formatierung", "Konfiguration", "Defragmentierung"])
+                db.run(groudLinksInsert, ["g14", "Spam", "Cursor", "Menü", "URL", "Domain", "Desktop"])
+                db.run(groudLinksInsert, ["g15", ".app", ".csv", ".iso", ".rar", ".sh", ".swf", ".tiff", ".ttf"])
+                db.run(groudLinksInsert, ["g16", "Einstellung_zB", "RadioButton_OptionButton", "Check_Boxes_Check_Button", "Pop-Up-Menu", "Tabs_Reiter", "Rollbalken_Scrollbar", "SpinButton", "Drop-Down-Menu"])
             }
         }),
 
