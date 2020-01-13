@@ -31,7 +31,7 @@ app.get("/api/groupids", (req, res, next) => {
             return;
         }
         res.json({
-            "data":rows
+            "data":rows[0]
         })
     });
 });
@@ -46,7 +46,7 @@ app.get("/api/items", (req, res, next) => {
             return;
         }
         res.json({
-            "data":rows
+            "data":rows[0]
         })
     });
 });
@@ -61,7 +61,7 @@ app.get("/api/groupLinks", (req, res, next) => {
             return;
         }
         res.json({
-            "data":rows
+            "data":rows[0]
         })
     });
 });
@@ -76,7 +76,7 @@ app.get("/api/userTemplate", (req, res, next) => {
             return;
         }
         res.json({
-            "data":rows
+            "data":rows[0]
         })
     });
 });
@@ -91,7 +91,7 @@ app.get("/api/userData", (req, res, next) => {
             return;
         }
         res.json({
-            "data":rows
+            "data":rows[0]
         })
     });
 });
