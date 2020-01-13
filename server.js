@@ -1,25 +1,21 @@
 // Create express app
 var express = require("express")
+var cors = require('cors')
 var app = express()
 var db = require("./database.js")
 var bodyParser = require("body-parser");
 
-
+app.use(cors())
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-// Server port
-var http_port = 8000
-
-// Start server
-app.listen(http_port, () => {
-    console.log("Server running on port %PORT%!".replace("%PORT%", http_port))
-});
-
-// Root endpoint
-app.get("/", (req, res, next) => {
-    res.json({"message":"Ok"})
-});
+app.get('/products/:id', function (req, res, next) {
+    res.json({msg: 'This is CORS-enabled for all origins!'})
+})
+  
+  app.listen(4000, function () {
+    console.log('CORS-enabled web server listening on port 4000')
+})
 
 // GET all groupIDs
 app.get("/api/groupids", (req, res, next) => {
@@ -76,7 +72,7 @@ app.get("/api/userTemplate", (req, res, next) => {
             return;
         }
         res.json({
-            "data":rows[0]
+            "user":rows[0]
         })
     });
 });
