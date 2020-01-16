@@ -1,6 +1,6 @@
 FROM node:11-alpine
 
-RUN mkdir -p /usr/src/app
+RUN mkdir -p /usr/src/app && mkdir -p /database
 
 WORKDIR /usr/src/app
 
@@ -10,4 +10,4 @@ RUN npm install
 
 EXPOSE 8080
 
-CMD ["node", "server.js"]
+ENTRYPOINT ["node", "server.js"]

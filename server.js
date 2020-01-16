@@ -21,7 +21,7 @@ app.patch('/products/:id', function (req, res, next) {
     res.json({msg: 'enables CORS for PATCH'})
 })
   
-app.listen(8000, function () {
+app.listen(8080, function () {
     console.log('CORS-enabled web server listening on port 8000')
 })
 
