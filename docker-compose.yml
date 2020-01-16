@@ -1,7 +1,21 @@
 version: '2'
 
 services:
+  proxy:
+    image: abiosoft/caddy:no-stats
+    environment:
+    - CADDYPATH=/certs
+    volumes:
+    - ./config/Caddyfile:/etc/Caddyfile
+    - ./data/caddy:/certs
+    ports:
+    - 80:80
+    - 443:443 # Port freischalten für VM --> Milde
+
+  frontend:
+    build: ./cls_adaptive
+
   backend:
-    build: .
-#    ports:
-#    - "3000:3000"
+    build: ./cls-backend
+    vulumes:
+    - ./data/backend:/database
