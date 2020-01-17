@@ -26,7 +26,7 @@ app.listen(8080, function () {
 })
 
 // GET all groupIDs
-app.get("/api/groupids", (req, res, next) => {
+app.get("/groupids", (req, res, next) => {
     var sql = "select * from groupIDs"
     var params = []
     db.all(sql, params, (err, rows) => {
@@ -41,7 +41,7 @@ app.get("/api/groupids", (req, res, next) => {
 });
 
 // GET all items
-app.get("/api/items", (req, res, next) => {
+app.get("/items", (req, res, next) => {
     var sql = "select * from items"
     var params = []
     db.all(sql, params, (err, rows) => {
@@ -56,7 +56,7 @@ app.get("/api/items", (req, res, next) => {
 });
 
 // GET all groupLinks
-app.get("/api/groupLinks", (req, res, next) => {
+app.get("/groupLinks", (req, res, next) => {
     var sql = "select * from groupLinks"
     var params = []
     db.all(sql, params, (err, rows) => {
@@ -71,7 +71,7 @@ app.get("/api/groupLinks", (req, res, next) => {
 });
 
 // GET the userTemplate
-app.get("/api/userTemplate", (req, res, next) => {
+app.get("/userTemplate", (req, res, next) => {
     var sql = "select * from userTemplate"
     var params = []
     db.all(sql, params, (err, rows) => {
@@ -86,7 +86,7 @@ app.get("/api/userTemplate", (req, res, next) => {
 });
 
 // GET the userData
-app.get("/api/userData", (req, res, next) => {
+app.get("/userData", (req, res, next) => {
     var sql = "select * from userData"        
     var params = []
     db.all(sql, params, (err, rows) => {
@@ -101,7 +101,7 @@ app.get("/api/userData", (req, res, next) => {
 });
 
 // GET the userData final difficulty
-app.get("/api/userData/final_Difficulty", (req, res, next) => {
+app.get("/userData/final_Difficulty", (req, res, next) => {
     var sql = "select final_Difficulty from userData"        
     var params = []
     db.all(sql, params, (err, rows) => {
@@ -116,7 +116,7 @@ app.get("/api/userData/final_Difficulty", (req, res, next) => {
 });
 
 // POST new cls-userData
-app.post("/api/userData", (req, res, next) => {
+app.post("/userData", (req, res, next) => {
     var data = {
         firstUsed: req.body.firstUsed,
         useTime: req.body.useTime,
@@ -151,7 +151,7 @@ app.post("/api/userData", (req, res, next) => {
 });
 
 // PATCH groupID
-app.patch("/api/groupids/patch", (req, res, next) => {
+app.patch("/groupids/patch", (req, res, next) => {
     var data = {
         lastID: req.body.lastID
     }
@@ -173,7 +173,7 @@ app.patch("/api/groupids/patch", (req, res, next) => {
 })
 
 // POST item
-app.post("/api/items", (req, res, next) => {
+app.post("/items", (req, res, next) => {
     var data = {
         itemID: req.body.itemID,
         difficulty: req.body.difficulty,
@@ -196,7 +196,7 @@ app.post("/api/items", (req, res, next) => {
 })
 
 // PATCH items
-app.patch("/api/items/patch/:itemID", (req, res, next) => {
+app.patch("/items/patch/:itemID", (req, res, next) => {
     var data = {
             itemID: req.body.itemID,
             difficulty: req.body.difficulty,
