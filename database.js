@@ -1,7 +1,7 @@
 var sqlite3 = require('sqlite3').verbose()
 var md5 = require('md5')
 
-const dbSource = "db.sqlite"
+const dbSource = "/database/db.sqlite"
 
 // Creates a new SQLite database
 let db = new sqlite3.Database(dbSource, (err) => {
