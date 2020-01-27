@@ -9,21 +9,26 @@ app.use(cors())
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.get('/products/:id', function (req, res, next) {
+app.get('/products/:id', cors(corsOptions), function (req, res, next) {
     res.json({msg: 'enables CORS for GET'})
 })
 
-app.post('/products/:id', function (req, res, next) {
+app.post('/products/:id', cors(corsOptions), function (req, res, next) {
     res.json({msg: 'enables CORS for POST'})
 })
 
-app.patch('/products/:id', function (req, res, next) {
+app.patch('/products/:id', cors(corsOptions), function (req, res, next) {
     res.json({msg: 'enables CORS for PATCH'})
 })
   
 app.listen(8080, function () {
     console.log('CORS-enabled web server listening on port 8000')
 })
+
+var corsOptions = {
+    origin: 'http://cls.imis.uni-luebeck.de',
+    optionsSuccessStatus: 200
+  }
 
 // GET all groupIDs
 app.get("/groupids", (req, res, next) => {
