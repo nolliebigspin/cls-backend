@@ -19,7 +19,7 @@
   "homepage": "https://github.com/nolliebigspin/rest-api-tutorial#readme",
   "dependencies": {
     "cors": "^2.8.5",
-    "express": "^4.17.3",
+    "express": "^4.20.0",
     "md5": "^2.2.1",
     "sqlite3": "^5.1.7"
   }
